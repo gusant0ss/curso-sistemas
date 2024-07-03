@@ -1,13 +1,12 @@
 const {Router} = require('express');
-const clientsRouter = require('./clients.routes.js');
-const usersRouter = require('./users.routes.js');
-const sessionRouter = require('./sessions.routes.js');
+const clientsRouter = require('./clients.routes');
+const usersRouter = require('./users.routes');
+const sessionRouter = require('./sessions.routes');
 
 const routes = Router();
 
+routes.use('/sessions', sessionRouter);
 routes.use('/users', usersRouter);
 routes.use('/clients', clientsRouter);
-
-routes.use('/sessions', sessionRouter);
 
 module.exports = routes;

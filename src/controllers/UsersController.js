@@ -3,7 +3,7 @@ const bcrypt = require('bcryptjs');
 
 class UsersController {
     async createUser(req, res){
-        const {name, email, password} = req;
+        const {name, email, password} = req.body;
 
         const isAdmin = false
 
@@ -12,7 +12,7 @@ class UsersController {
         await knex('users').insert({
             name,
             email,
-            password,
+            password: hashedPassword,
             isAdmin
         })
         return res.status(201).json('Usuário criado')

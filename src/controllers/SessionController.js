@@ -2,7 +2,10 @@ require('../configs/auth')
 const { sign } = require('jsonwebtoken')
 const authConfig = require('../configs/auth')
 
-const knex = require('../database');
+const bcrypt = require('bcryptjs')
+const AppError = require("../utils/AppError")
+
+const knex = require('../database/knex');
 
 
 class SessionController {
@@ -15,9 +18,9 @@ class SessionController {
             return res.status(400).json("Email e/ou senha inválido")
         }
 
-        const passwordMatched = bcrypt.compare(password, user, password)
+        const passwordMatched = bcrypt.compare(password, user.password)
 
-        if (passwordMatched) {
+        if (!passwordMatched) {
             throw new AppError('Email e/ou senha incorreto!', 401)
         }
 

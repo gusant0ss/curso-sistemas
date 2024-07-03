@@ -1,9 +1,9 @@
 const knex = require('../database/knex/');
 
 async function checkIsAdmin(req, res, next) {
-    const {user_id} = req.headers
+    const {id} = req.user
 
-    const user = await knex('users').where({id: user_id}).first()
+    const user = await knex('users').where({id}).first()
 
     if(!user){
         return res.status(400).json('Usuário não encontrado')

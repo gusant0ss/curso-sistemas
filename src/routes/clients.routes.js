@@ -7,7 +7,7 @@ const clientsRoutes = Router()
 
 const clientsController = new ClientsController()
 
-clientsRoutes.post('/', clientsController.creatContacts)
-clientsRoutes.get('/:user_id', ensureAuthenticaded,checkIsAdmin, clientsController.listContacts)
+clientsRoutes.post('/', clientsController.createContacts)
+clientsRoutes.get('/', ensureAuthenticaded,checkIsAdmin, clientsController.listAllContacts)
 
 module.exports = clientsRoutes

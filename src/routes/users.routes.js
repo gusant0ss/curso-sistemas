@@ -9,8 +9,10 @@ const usersController = new UsersController()
 
 usersRoutes.get('/', usersController.listUsers);
 
+usersRoutes.use(ensureAuthenticaded)
+
 usersRoutes.post('/', checkIsAdmin, usersController.createUser);
-usersRoutes.delete('/:id/admin/:user_id', checkIsAdmin, usersController.deleteUsers);
-usersRoutes.put('/:id', checkIsAdmin, usersController.updateUsers);
+usersRoutes.delete('/:user_id', checkIsAdmin, usersController.deleteUsers);
+usersRoutes.put('/:user_id', checkIsAdmin, usersController.updateUsers);
 
 module.exports = usersRoutes

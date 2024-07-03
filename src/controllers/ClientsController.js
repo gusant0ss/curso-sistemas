@@ -2,7 +2,7 @@ const knex = require('../database/knex');
 
 class ClientsController {
     async createContacts(req, res){
-        const {name, message} = req.boby;
+        const {name, email, message} = req.body;
 
         await knex('clients').insert({
             name,
@@ -14,7 +14,7 @@ class ClientsController {
 
     async listAllContacts(req, res){
         const contacts = await knex('clients');
-        return res.status(200).json(contatos)
+        return res.status(200).json(contacts)
     }
 
 }
